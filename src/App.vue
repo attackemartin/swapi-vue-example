@@ -17,5 +17,8 @@
 </script>
 
 <style>
-
+  .loading-gif {
+    width: 50px;
+    height: auto;
+  }
 </style>
