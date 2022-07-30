@@ -5,6 +5,7 @@
 const swapiUrl = "https://swapi.dev/api";
 
 export default {
+	// fetch single page of people. Set to first page
 	async getSwapiPeoplePage(page = 1) {
 		try {
 			const response = await fetch(`${swapiUrl}/people/?page=${page}`);
@@ -14,6 +15,7 @@ export default {
 			throw error;
 		}
 	},
+	// foreach through every page of peoples calling getSwapiPeoplePage
 	async getAllSwapiPeople() {
 		let people;
 
@@ -21,6 +23,7 @@ export default {
 			//get first page
 			const response = await this.getSwapiPeoplePage();
 			people = response;
+			// counting people on page
 			const { count, perPageCount } = {
 				count: people.count,
 				perPageCount: people.results.length

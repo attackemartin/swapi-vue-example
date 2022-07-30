@@ -1,6 +1,6 @@
 <template>
   <main v-if="!loading">
-    <FilmSelect @get-film="getFilmID" :films="films" />
+    <FilmSelect @movie-filter="filterMovie" :films="films" />
     <PeopleList :people="people" :planets="planets" />
   </main>
 
@@ -41,33 +41,45 @@ export default {
       const swFilms = await res.json()
       return swFilms
     },
-    getFilmID(filmClass) {
+    filterMovie(filmClass) {
       console.log(filmClass)
-      const personContainer = document.getElementsByClassName('person-container')
-      const selectedPersons = document.getElementsByClassName(filmClass)
+      const characterContainer = document.getElementsByClassName('character-container')
+      const selectedCharacters = document.getElementsByClassName(filmClass)
 
-      for (const person of personContainer) {
-        person.classList.add('hidden');
+      for (const character of characterContainer) {
+        character.classList.add('hidden');
       }
 
-      for (const selectedPerson of selectedPersons) {
-        selectedPerson.classList.remove('hidden');
+      for (const selectedCharacter of selectedCharacters) {
+        selectedCharacter.classList.remove('hidden');
       }
-
     }
   },
   async created() {
     const swPeople = await Services.getAllSwapiPeople()
-    console.log(swPeople)
 
-    // const swPlanets = await Services.getSwapiPlanet()
-    // console.log(swPlanets)
+    swPeople.forEach(character => {
+      const charHomeWorldURL = character.homeworld
+
+      const getHomeworldData = () => 
+        fetch (charHomeWorldURL)
+          .then (homePlanetData => homePlanetData.json ());
+
+      getHomeworldData ()
+	      .then (homePlanetData => {
+
+          const homePlanetName = homePlanetData.name
+          const homePlanetID = homePlanetData.url[homePlanetData.url.length - 2];
+          
+          character.homeplanetName = homePlanetName
+          character.homeplanetURLID = homePlanetID
+        })
+
+    });
 
     const swFilms = await this.fetchSWFilms()
-    console.log(swFilms)
 
     this.people = swPeople
-    // this.planets = swPlanets
     this.films = swFilms.results
     this.loading = false
 

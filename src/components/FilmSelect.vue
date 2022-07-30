@@ -25,9 +25,9 @@
           const selectedFilmURL = selectedFilm.url
           const filmID = selectedFilmURL[selectedFilmURL.length - 2];
 
-          this.$emit('get-film', 'movie-' + filmID)
+          this.$emit('movie-filter', 'movie-' + filmID)
         } else {
-          this.$emit('get-film', 'person-container')
+          this.$emit('movie-filter', 'character-container')
         }
       }
     },

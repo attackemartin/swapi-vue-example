@@ -5,6 +5,7 @@
 const swapiUrl = "https://swapi.dev/api";
 
 export default {
+	// get planet by page ID
 	async getSwapiPlanet(planetId) {
 		try {
 			const response = await fetch(`${swapiUrl}/planets/${planetId}`);

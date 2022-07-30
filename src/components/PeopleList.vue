@@ -1,21 +1,17 @@
 <template>
   <div class="people-list-container">
-    <Person v-for="person in people" :person="person" :planets="planets" />
+    <Character v-for="character in people" :character="character" :planets="planets" />
       
   </div>
 </template>
 
 <script>
-import Services from "@/Services/PeopleService"
-import Person from '@/components/Person'
-
-
-
+import Character from '@/components/Character'
 
 export default ({
   name: 'PeopleList',
   components: {
-    Person
+    Character
   },
   props: ['people','planets'],
   methods: {
@@ -24,10 +20,6 @@ export default ({
 
   async created() {
 
-    // const swPlanets = await Services.getSwapiPlanet()
-    // console.log(swPlanets)
-
-    // this.planets = swPlanets
 
   }
 })
