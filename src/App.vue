@@ -19,7 +19,7 @@
     position: relative;
     overflow-x: hidden;
     font-size: 0.9em;
-    list-style: 1.1em;
+    line-height: 1.1em;
     color: #333;
     font-family: Arial, sans-serif;
   }
