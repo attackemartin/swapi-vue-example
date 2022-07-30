@@ -4,6 +4,8 @@
   <div class="container">
     <router-view/>
   </div>
+
+  <Footer />
 </template>
 
 <style>
@@ -17,9 +19,24 @@
     position: relative;
     overflow-x: hidden;
     font-size: 0.9em;
+    list-style: 1.1em;
     color: #333;
     font-family: Arial, sans-serif;
-  } 
+  }
+
+  a {
+    color: rgb(255, 191, 0);
+    text-decoration: none;
+  }
+  
+  .hidden {
+    display: none;
+  }
+
+  .wrapper {
+    margin: 0 30px;
+    min-height: 100vh;
+  }
 
   .stars-background {
     position: fixed;
@@ -34,6 +51,7 @@
 
 <script>
   import Header from '@/components/Header'
+  import Footer from '@/components/Footer'
 
   import * as THREE from '@/assets/three'
   const starSprite = require('@/assets/star.png')
@@ -111,6 +129,7 @@
   export default {
     components: {
       Header,
+      Footer,
     }
   }
 </script>

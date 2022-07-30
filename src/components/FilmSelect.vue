@@ -1,12 +1,16 @@
 <template>
-  <select @change="onChange()" v-model="selected">
-    <option value="0">
-      All Movies
-    </option>
-    <option v-for="film in films" :value="film.episode_id">
-      {{film.title}}
-    </option>
-  </select>
+  <div class="movie-select">
+    <span>Filter characters by movies:</span>
+
+    <select @change="onChange()" v-model="selected">
+      <option value="0">
+        All Movies
+      </option>
+      <option v-for="film in films" :value="film.episode_id">
+        {{film.title}}
+      </option>
+    </select>
+  </div>
 </template>
 
 <script>
@@ -33,3 +37,19 @@
     },
   })
 </script>
+
+<style scoped>
+  .movie-select {
+    color: rgba(255,255,255,0.7);
+  }
+
+  .movie-select span {
+    font-size: 0.8em;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .movie-select select {
+    cursor: pointer;
+  }
+</style>

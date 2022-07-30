@@ -21,7 +21,7 @@ export default ({
 
 <style scoped>
   .people-list-container {
-    margin: 30px;
+    margin: 30px 0;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 20px;

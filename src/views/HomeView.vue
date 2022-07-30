@@ -1,8 +1,11 @@
 <template>
-  <main>
+  <main class="wrapper">
     <section v-if="!loading">
-      <h1>Characters of Star Wars</h1>
-      <h2>Episodes 1 - 6</h2>
+      <div class="page-hero">
+        <h1>Characters of Star Wars</h1>
+        <small>*of Episodes 1 - 6</small>
+      </div>
+      
       <FilmSelect @movie-filter="filterMovie" :films="films" />
       <PeopleList :people="people" :planets="planets" />
     </section>
@@ -20,7 +23,6 @@
   import FilmSelect from '@/components/FilmSelect'
   import Loading from '@/components/Loading'
   
-
 
   export default {
     name: 'HomeView',
@@ -74,9 +76,9 @@
 
         getHomeworldData ()
           .then (homePlanetData => {
-
             const homePlanetName = homePlanetData.name
-            const homePlanetID = homePlanetData.url[homePlanetData.url.length - 2];
+            const weakRegExCopyPasteSkills = homePlanetData.url.replace( /^\D+/g, '');
+            const homePlanetID = weakRegExCopyPasteSkills.slice(0, -1);
             
             character.homeplanetName = homePlanetName
             character.homeplanetURLID = homePlanetID
@@ -93,6 +95,10 @@
 </script>
 
 
-<style>
-  
+<style scoped>
+  .page-hero {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 25px;
+  }
 </style>
