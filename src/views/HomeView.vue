@@ -1,14 +1,20 @@
 <template>
-  <main v-if="!loading">
-    <FilmSelect @movie-filter="filterMovie" :films="films" />
-    <PeopleList :people="people" :planets="planets" />
-  </main>
+  <main>
+    <h1>Characters of Star Wars</h1>
+    <h2>Episodes 1 - 6</h2>
 
-  <main v-else>
-    <div class="loading-overlay">
-      Fetching Star Wars Data
-      <img :src="loadingImage" class="loading-gif" />
-    </div>
+    <section v-if="!loading">
+      <FilmSelect @movie-filter="filterMovie" :films="films" />
+      <PeopleList :people="people" :planets="planets" />
+    </section>
+
+    <section v-else>
+      <div class="loading-overlay">
+        Fetching Star Wars Data
+        <img :src="loadingImage" class="loading-gif" />
+      </div>
+    </section>
+    
   </main>
 </template>
 
@@ -33,6 +39,7 @@ export default {
       filmSelectID: 0,
       people: {},
       planets: {},
+      charactersBuild: 0
     }
   },
   methods: {
@@ -42,7 +49,6 @@ export default {
       return swFilms
     },
     filterMovie(filmClass) {
-      console.log(filmClass)
       const characterContainer = document.getElementsByClassName('character-container')
       const selectedCharacters = document.getElementsByClassName(filmClass)
 
@@ -56,6 +62,9 @@ export default {
     }
   },
   async created() {
+    const swFilms = await this.fetchSWFilms()
+    this.films = swFilms.results
+
     const swPeople = await Services.getAllSwapiPeople()
 
     swPeople.forEach(character => {
@@ -73,15 +82,14 @@ export default {
           
           character.homeplanetName = homePlanetName
           character.homeplanetURLID = homePlanetID
+          this.charactersBuild = this.charactersBuild + 1
+
+          if (this.charactersBuild == swPeople.length) {
+            this.people = swPeople
+            this.loading = false
+          } 
         })
-
     });
-
-    const swFilms = await this.fetchSWFilms()
-
-    this.people = swPeople
-    this.films = swFilms.results
-    this.loading = false
 
   }
 }

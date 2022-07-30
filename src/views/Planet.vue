@@ -3,7 +3,7 @@
     <router-link :to="{ name: 'home' }" >
       Back to Character Overview
     </router-link>
-    
+
     <h1>
       {{planet.name}}
     </h1>
@@ -43,11 +43,8 @@ export default ({
   },
   async created() {
     const swPlanet = await Services.getSwapiPlanet(this.id)
-    console.log(swPlanet)
     this.planet = swPlanet
-
     this.loading = false
-
   }
 })
 </script>

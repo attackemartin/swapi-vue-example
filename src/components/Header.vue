@@ -1,7 +1,7 @@
 <template>
   <header>
     <div>
-      People of Star Wars
+      Swapi Vue Example App
     </div>
   </header>
 </template>

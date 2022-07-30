@@ -34,8 +34,6 @@ export default ({
   props: ['character','planets'],
   data() {
     return {
-      homeplanet: {},
-      homeplanetID: 0,
       filmClasses: '',
     }
   },
@@ -56,3 +54,9 @@ export default ({
   }
 })
 </script>
+
+<style scoped>
+  .character-container {
+    
+  }
+</style>
