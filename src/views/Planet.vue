@@ -48,7 +48,7 @@ export default ({
   data() {
     return {
       loading: true,
-      loadingImage: require('../assets/loading.gif'),
+      loadingImage: require('../assets/loading-r2d2.gif'),
       planet: {},
     }
   },
