@@ -44,12 +44,4 @@ export default {
 			throw error;
 		}
 	},
-	async getSwapiPlanet(planetId) {
-		try {
-			const response = await fetch(`${swapiUrl}/planets/${planetId}`);
-			return await response.json();
-		} catch (error) {
-			return console.error(error);
-		}
-	},
 };

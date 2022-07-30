@@ -1,6 +1,7 @@
 <template>
   <main v-if="!loading">
-    <People :people="people" :planets="planets" />
+    <FilmSelect @get-film="getFilmID" :films="films" />
+    <PeopleList :people="people" :planets="planets" />
   </main>
 
   <main v-else>
@@ -12,20 +13,24 @@
 </template>
 
 <script>
-import Services from "@/services"
-import People from '@/components/People'
+  import Services from "@/Services/PeopleService"
+  import PeopleList from '@/components/PeopleList'
+  import FilmSelect from '@/components/FilmSelect'
+  import { thisExpression } from "@babel/types"
 
 
 export default {
   name: 'HomeView',
   components: {
-    People,
+    PeopleList,
+    FilmSelect
   },
   data() {
     return {
       loading: true,
       loadingImage: require('../assets/loading.gif'),
       films: {},
+      filmSelectID: 0,
       people: {},
       planets: {},
     }
@@ -36,7 +41,20 @@ export default {
       const swFilms = await res.json()
       return swFilms
     },
-    
+    getFilmID(filmClass) {
+      console.log(filmClass)
+      const personContainer = document.getElementsByClassName('person-container')
+      const selectedPersons = document.getElementsByClassName(filmClass)
+
+      for (const person of personContainer) {
+        person.classList.add('hidden');
+      }
+
+      for (const selectedPerson of selectedPersons) {
+        selectedPerson.classList.remove('hidden');
+      }
+
+    }
   },
   async created() {
     const swPeople = await Services.getAllSwapiPeople()
