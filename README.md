@@ -1,4 +1,5 @@
 # swapi-example
+Vue 3 app with swapi.dev handling
 
 ## Project setup
 ```
