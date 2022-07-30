@@ -27,6 +27,12 @@ export default ({
     grid-gap: 20px;
   }
 
+  @media (min-width: 1920px) {
+    .people-list-container {  
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }  
+
   @media (max-width: 992px) {
     .people-list-container {  
       grid-template-columns: 1fr 1fr;

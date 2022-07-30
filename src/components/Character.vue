@@ -24,14 +24,7 @@
           {{character.gender}}
         </li>
         <li>
-          <strong>
-            Homeworld:
-          </strong>
-          <router-link
-            :to="{ name: 'Planet', params: { id: character.homeplanetURLID} }">
-
-            {{character.homeplanetName}}
-          </router-link>
+          <StyledLink :linkURL="character.homeplanetURLID" :linkTitle="character.homeplanetName" />
         </li>
       </ul>
     </div>
@@ -39,9 +32,14 @@
 </template>
 
 <script>
+import StyledLink from '@/components/StyledLink'
+
 export default ({
   name: 'Character',
   props: ['character','planets'],
+  components: {
+    StyledLink
+  },
   data() {
     return {
       filmClasses: '',
@@ -67,9 +65,10 @@ export default ({
 
 <style scoped>
   .character-container {
-    background-color: #fff;
+    background-color: rgba(255,255,255,0.15);
     padding: 20px;
     border-radius: 5px 5px 20px 5px;
+    color: rgb(208, 208, 208);
     transition: border-radius 0.4s ease-out;
   }
 
@@ -85,8 +84,9 @@ export default ({
 
   .character-container strong {
     display: block;
-    font-size: 0.8em;
-    color: rgba(0,0,0,0.4);
+    font-size: 0.7em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4)
   }
 
   .character-container ul {
@@ -97,25 +97,6 @@ export default ({
 
   .character-container ul li {
     margin-top: 10px;
-  }
-
-  .character-container a {
-    font-weight: bold;
-    display: inline-block;
-    padding: 4px 15px;
-    margin-top: 5px;
-    text-transform: uppercase;
-    font-size: 0.75em;
-    background-color: rgba(255,255,255,1);
-    color: rgb(255, 191, 0);
-    transition: all 0.2s ease-out;
-    box-shadow: 1px 1px 0 0 rgba(0,0,0,0.5);
-  }
-
-  .character-container a:hover {
-    box-shadow: 0 0 0 0 rgba(0,0,0,0.5); 
-    background-color: rgb(255, 191, 0);
-    color: #fff;
   }
 
   @media (max-width: 767px) {
