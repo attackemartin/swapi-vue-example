@@ -1,5 +1,5 @@
 # swapi-example
-Vue 3 app with swapi.dev handling
+Vue 3 app with swapi.dev handling and shiny threejs effect
 
 ## Project setup
 ```
