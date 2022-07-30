@@ -3,7 +3,7 @@
     <router-link :to="{ name: 'home' }" >
       Back to Character Overview
     </router-link>
-
+  
     <h1>
       {{planet.name}}
     </h1>
@@ -16,19 +16,20 @@
   </main>
 
   <main v-else>
-    <div class="loading-overlay">
-      Fetching Star Wars Data
-      <img :src="loadingImage" class="loading-gif" />
-    </div>
+    <Loading :loadingImage="loadingImage" />
   </main>
 </template>
 
 <script>
 
-import Services from "@/Services/PlanetService"
+import Services from '@/Services/PlanetService'
+import Loading from '@/components/Loading'
 
 export default ({
   name: 'Planet',
+  components: {
+    Loading,
+  },
   props: ['id'],
 
   data() {

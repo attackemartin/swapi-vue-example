@@ -1,7 +1,6 @@
 <template>
   <div class="people-list-container">
     <Character v-for="character in people" :character="character" :planets="planets" />
-      
   </div>
 </template>
 
@@ -17,14 +16,26 @@ export default ({
   methods: {
     
   },
-
-  async created() {
-
-
-  }
 })
 </script>
 
 <style scoped>
+  .people-list-container {
+    margin: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+  }
 
+  @media (max-width: 992px) {
+    .people-list-container {  
+      grid-template-columns: 1fr 1fr;
+    }
+  }  
+
+  @media (max-width: 767px) {
+    .people-list-container {  
+      grid-template-columns: auto;
+    }
+  }  
 </style>
